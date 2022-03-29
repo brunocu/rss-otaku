@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="CRUNCHYROLL_RECENT">http://feeds.feedburner.com/crunchyroll/rss/anime</string>
+    <string name="CRUNCHYROLL_POPULAR">http://feeds.feedburner.com/crunchyroll/rss/anime/popular</string>
+    <string name="ANIME_NEWS_NETWORK">https://www.animenewsnetwork.com/all/rss.xml</string>
+    <string name="KODANSHA">https://kodansha.us/feed</string>
+</resources>
