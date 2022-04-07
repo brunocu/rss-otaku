@@ -47,17 +47,26 @@ class CrunchyrollParser {
         var title: String? = null
         var description: String? = null
         var pubDate: String? = null
+        var link: String? = null
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.eventType != XmlPullParser.START_TAG)
                 continue
             when (parser.name) {
                 "title" -> title = readText(parser)
-                "description" -> description = readText(parser)
+                "description" -> description = readDescription(parser)
                 "pubDate" -> pubDate = readText(parser)
+                "link" -> link = readText(parser)
                 else -> skip(parser)
             }
         }
-        return CrunchyEntry(title, description, pubDate)
+        return CrunchyEntry(title, description, pubDate, link)
+    }
+
+    private fun readDescription(parser: XmlPullParser): String {
+        parser.require(XmlPullParser.START_TAG, null, "description")
+        val description = readText(parser)
+        val regex = Regex("<br />")
+        return regex.split(description).last()
     }
 
     private fun readText(parser: XmlPullParser): String {

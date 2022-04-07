@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_popular -> Intent(this, CrunchyrollFeed::class.java).apply {
                 putExtra(CRUNCHYROLL_FEED, "POPULAR")
             }
-            else -> throw IllegalArgumentException("Invalid button")
+            else -> throw IllegalStateException("Invalid button")
         }
         startActivity(intent)
     }

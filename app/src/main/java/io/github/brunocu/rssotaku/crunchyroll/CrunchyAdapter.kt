@@ -13,6 +13,7 @@ class CrunchyAdapter(private val feedEntries: List<CrunchyEntry>) :
         val txtTitle: TextView = view.findViewById(R.id.txtTitle)
         val txtPubDate: TextView = view.findViewById(R.id.txtPubDate)
         val txtDescription: TextView = view.findViewById(R.id.txtDescription)
+        val txtLink: TextView = view.findViewById(R.id.txtLink)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,6 +27,7 @@ class CrunchyAdapter(private val feedEntries: List<CrunchyEntry>) :
         holder.txtTitle.text = currentEntry.title
         holder.txtPubDate.text = currentEntry.pubDate
         holder.txtDescription.text = currentEntry.description
+        holder.txtLink.text = "Watch now: " + currentEntry.link
     }
 
     override fun getItemCount() = feedEntries.size

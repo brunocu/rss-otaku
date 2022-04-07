@@ -17,7 +17,8 @@ import java.net.URL
 data class CrunchyEntry(
     val title: String?,
     val description: String?,
-    val pubDate: String?
+    val pubDate: String?,
+    val link: String?
 )
 
 class CrunchyrollFeed : AppCompatActivity() {
@@ -30,7 +31,7 @@ class CrunchyrollFeed : AppCompatActivity() {
             val feedURL = when (intent.getStringExtra(CRUNCHYROLL_FEED)) {
                 "RECENT" -> getString(R.string.CRUNCHYROLL_RECENT)
                 "POPULAR" -> getString(R.string.CRUNCHYROLL_POPULAR)
-                else -> throw IllegalArgumentException("Invalid feed")
+                else -> throw IllegalStateException("Invalid feed")
             }
             val downloader = Downloader(this@CrunchyrollFeed, recyclerView)
             downloader.loadFeed(feedURL)
@@ -53,13 +54,13 @@ class CrunchyrollFeed : AppCompatActivity() {
                         val parser = CrunchyrollParser()
                         entries = parser.parse(rssFeed.openStream())
                     } catch (e: Exception) {
-                        // How to call toast from IO dispatcher
+                        // How to call toast from IO dispatcher ?
                         Log.e(TAG, "loadFeed error: ${e.message}")
                     }
                 }
                 val adapter = CrunchyAdapter(entries!!)
                 recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(context)
+//                recyclerView.layoutManager = LinearLayoutManager(context)
             }
         }
     }
