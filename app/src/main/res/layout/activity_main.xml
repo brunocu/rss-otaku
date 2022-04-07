@@ -10,24 +10,28 @@
         android:id="@+id/btn_waifu"
         android:layout_width="222dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#FFC99D"
         android:onClick="openActivity"
         android:text="Waifu"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_manga"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_crunchyroll" />
 
     <Button
         android:id="@+id/btn_manga"
         android:layout_width="222dp"
         android:layout_height="54dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#C8C0FF"
         android:text="Manga news"
+        app:layout_constraintBottom_toTopOf="@+id/btn_news"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_waifu" />
 
@@ -37,16 +41,18 @@
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+
         android:layout_marginEnd="16dp"
         android:backgroundTint="#C8C0FF"
         android:text="Anime news"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_manga" />
 
     <Button
-        android:id="@+id/btn_popular"
+        android:id="@+id/btn_crunchyroll"
         android:layout_width="222dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
@@ -54,23 +60,12 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="#C8C0FF"
         android:onClick="openActivity"
-        android:text="Popular videos"
+        android:text="Crunchyroll"
         app:layout_constraintBottom_toTopOf="@+id/btn_waifu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_recent"
-        android:layout_width="222dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="#C8C0FF"
-        android:onClick="openActivity"
-        android:text="Recently added anime"
-        app:layout_constraintBottom_toTopOf="@+id/btn_popular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

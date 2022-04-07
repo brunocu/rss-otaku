@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RssOtaku"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".crunchyroll.CrunchySelectActivity"
+            android:exported="false" />
+        <activity
             android:name=".WaifuActivity"
             android:exported="false" />
         <activity

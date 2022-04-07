@@ -14,7 +14,7 @@ data class Entry(
     val link: String?
 )
 
-class RecyclerAdapter(private val feedEntries: List<Entry>) :
+class RecyclerAdapter(private val feedEntries: List<Entry>, private val feedType: String) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtTitle: TextView = view.findViewById(R.id.txtTitle)

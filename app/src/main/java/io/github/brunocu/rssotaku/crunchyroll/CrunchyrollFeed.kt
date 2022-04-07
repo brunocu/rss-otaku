@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import io.github.brunocu.rssotaku.CRUNCHYROLL_FEED
 import io.github.brunocu.rssotaku.Entry
 import io.github.brunocu.rssotaku.R
 import io.github.brunocu.rssotaku.RecyclerAdapter
@@ -35,7 +34,7 @@ class CrunchyrollFeed : AppCompatActivity() {
         private class Downloader(
             private val recyclerView: RecyclerView
         ) {
-            private var _TAG = "CrunchyrollFeedDownloader"
+            private val TAG = "CrunchyrollFeedDownloader"
 
             suspend fun loadFeed(url: String) {
                 var entries: List<Entry>? = null
@@ -47,12 +46,12 @@ class CrunchyrollFeed : AppCompatActivity() {
                         entries = parser.parse(rssFeed.openStream())
                     } catch (e: Exception) {
                         // How to call toast from IO dispatcher ?
-                        Log.e(_TAG, "loadFeed error: ${e.message}")
+                        Log.e(TAG, "loadFeed error: ${e.message}")
                     }
                 }
-                val adapter = RecyclerAdapter(entries!!)
+                val adapter = RecyclerAdapter(entries!!, "CRUNCHYROLL")
                 recyclerView.adapter = adapter
-//                recyclerView.layoutManager = LinearLayoutManager(context)
+                // recyclerView.layoutManager = LinearLayoutManager(context)
             }
         }
     }
