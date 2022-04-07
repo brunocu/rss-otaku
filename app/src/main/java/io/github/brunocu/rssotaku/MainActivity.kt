@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun openFeed(view: View) {
+    fun openActivity(view: View) {
         val intent = when(view.id) {
             R.id.btn_recent -> Intent(this, CrunchyrollFeed::class.java).apply {
                 putExtra(CRUNCHYROLL_FEED, "RECENT")
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_popular -> Intent(this, CrunchyrollFeed::class.java).apply {
                 putExtra(CRUNCHYROLL_FEED, "POPULAR")
             }
+            R.id.btn_waifu -> Intent(this, WaifuActivity::class.java)
             else -> throw IllegalStateException("Invalid button")
         }
         startActivity(intent)

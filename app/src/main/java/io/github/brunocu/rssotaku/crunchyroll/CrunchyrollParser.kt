@@ -1,11 +1,12 @@
 package io.github.brunocu.rssotaku.crunchyroll
 
 import android.util.Xml
+import io.github.brunocu.rssotaku.Entry
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
 
 class CrunchyrollParser {
-    fun parse(inputSteam: InputStream): List<CrunchyEntry> {
+    fun parse(inputSteam: InputStream): List<Entry> {
         inputSteam.use { inputSteam ->
             val parser: XmlPullParser = Xml.newPullParser()
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false) // ?
@@ -15,8 +16,8 @@ class CrunchyrollParser {
         }
     }
 
-    private fun readFeed(parser: XmlPullParser): List<CrunchyEntry> {
-        val entries = mutableListOf<CrunchyEntry>()
+    private fun readFeed(parser: XmlPullParser): List<Entry> {
+        val entries = mutableListOf<Entry>()
 
         movetoTag(parser, "channel")
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -42,7 +43,7 @@ class CrunchyrollParser {
         }
     }
 
-    private fun readItem(parser: XmlPullParser): CrunchyEntry {
+    private fun readItem(parser: XmlPullParser): Entry {
         parser.require(XmlPullParser.START_TAG, null, "item")
         var title: String? = null
         var description: String? = null
@@ -59,7 +60,7 @@ class CrunchyrollParser {
                 else -> skip(parser)
             }
         }
-        return CrunchyEntry(title, description, pubDate, link)
+        return Entry(title, description, pubDate, link)
     }
 
     private fun readDescription(parser: XmlPullParser): String {

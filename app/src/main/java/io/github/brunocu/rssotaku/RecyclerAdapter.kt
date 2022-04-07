@@ -1,14 +1,20 @@
-package io.github.brunocu.rssotaku.crunchyroll
+package io.github.brunocu.rssotaku
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import io.github.brunocu.rssotaku.R
 
-class CrunchyAdapter(private val feedEntries: List<CrunchyEntry>) :
-    RecyclerView.Adapter<CrunchyAdapter.ViewHolder>() {
+data class Entry(
+    val title: String?,
+    val description: String?,
+    val pubDate: String?,
+    val link: String?
+)
+
+class RecyclerAdapter(private val feedEntries: List<Entry>) :
+    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtTitle: TextView = view.findViewById(R.id.txtTitle)
         val txtPubDate: TextView = view.findViewById(R.id.txtPubDate)
@@ -23,7 +29,7 @@ class CrunchyAdapter(private val feedEntries: List<CrunchyEntry>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentEntry: CrunchyEntry = feedEntries[position]
+        val currentEntry: Entry = feedEntries[position]
         holder.txtTitle.text = currentEntry.title
         holder.txtPubDate.text = currentEntry.pubDate
         holder.txtDescription.text = currentEntry.description
