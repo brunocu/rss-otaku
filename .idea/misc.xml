@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_crunchyroll_feed.xml" value="0.2759259259259259" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2759259259259259" />
-        <entry key="app/src/main/res/layout/activity_waifu.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/cartita.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/k8elu/AndroidStudioProjects/rss-otaku/app/src/main/res/layout/activity_crunchy_select.xml" value="0.25" />
+        <entry key="..\:/Users/k8elu/AndroidStudioProjects/rss-otaku/app/src/main/res/layout/activity_crunchyroll_feed.xml" value="0.25" />
+        <entry key="..\:/Users/k8elu/AndroidStudioProjects/rss-otaku/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/k8elu/AndroidStudioProjects/rss-otaku/app/src/main/res/layout/cartita.xml" value="0.264" />
+        <entry key="..\:/Users/k8elu/AndroidStudioProjects/rss-otaku/app/src/main/res/layout/crunchyroll_card.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>

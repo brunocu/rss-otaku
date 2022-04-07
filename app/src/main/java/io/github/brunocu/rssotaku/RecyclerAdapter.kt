@@ -36,8 +36,12 @@ class RecyclerAdapter(private val feedEntries: List<Entry>, private val feedType
         holder.txtDescription.text = currentEntry.description
         holder.txtLink.text = "Watch now: " + currentEntry.link
 
-
-        holder.txtTitle.setTextColor(Color.parseColor("#FFC196"))
+        when(feedType) {
+            "CRUNCHYROLL" -> holder.txtTitle.setTextColor(Color.parseColor("#FFC196"))
+            "ANN" -> holder.txtTitle.setTextColor(Color.parseColor("#BBFF9D"))
+            "MANGA" -> holder.txtTitle.setTextColor(Color.parseColor("#9DDBFF"))
+            else -> IllegalStateException("Invalid feedType")
+        }
     }
 
     override fun getItemCount() = feedEntries.size
