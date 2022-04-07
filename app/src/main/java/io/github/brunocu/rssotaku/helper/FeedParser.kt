@@ -1,11 +1,10 @@
-package io.github.brunocu.rssotaku.crunchyroll
+package io.github.brunocu.rssotaku.helper
 
 import android.util.Xml
-import io.github.brunocu.rssotaku.Entry
 import org.xmlpull.v1.XmlPullParser
 import java.io.InputStream
 
-class CrunchyrollParser {
+class FeedParser {
     fun parse(inputSteam: InputStream): List<Entry> {
         inputSteam.use { inputSteam ->
             val parser: XmlPullParser = Xml.newPullParser()
@@ -32,7 +31,6 @@ class CrunchyrollParser {
     }
 
     private fun movetoTag(parser: XmlPullParser, name: String) {
-        parser.require(XmlPullParser.START_TAG, null, "rss")
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.eventType != XmlPullParser.START_TAG)
                 continue

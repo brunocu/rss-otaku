@@ -19,7 +19,7 @@
             android:name=".WaifuActivity"
             android:exported="false" />
         <activity
-            android:name=".crunchyroll.CrunchyrollFeed"
+            android:name=".FeedActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

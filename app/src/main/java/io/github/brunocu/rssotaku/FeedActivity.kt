@@ -1,40 +1,49 @@
-package io.github.brunocu.rssotaku.crunchyroll
+package io.github.brunocu.rssotaku
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import io.github.brunocu.rssotaku.Entry
-import io.github.brunocu.rssotaku.R
-import io.github.brunocu.rssotaku.RecyclerAdapter
+import io.github.brunocu.rssotaku.helper.FeedParser
+import io.github.brunocu.rssotaku.helper.Entry
+import io.github.brunocu.rssotaku.helper.RecyclerAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.URL
 
-class CrunchyrollFeed : AppCompatActivity() {
+const val FEED = "io.github.brunocu.rssotaku.FEED"
+
+class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
 
         lifecycleScope.launch {
             val recyclerView = findViewById<RecyclerView>(R.id.crunchy_recycler)
-            val feedURL = when (intent.getStringExtra(CRUNCHYROLL_FEED)) {
+            val feedURL = when (intent.getStringExtra(FEED)) {
                 "RECENT" -> getString(R.string.CRUNCHYROLL_RECENT)
                 "POPULAR" -> getString(R.string.CRUNCHYROLL_POPULAR)
+                "NEWS" -> getString(R.string.ANIME_NEWS_NETWORK)
+                "MANGA" -> getString(R.string.KODANSHA)
                 else -> throw IllegalStateException("Invalid feed")
             }
-            val downloader = Downloader(recyclerView)
+            val cardType = when(intent.getStringExtra(FEED)) {
+                "RECENT", "POPULAR" -> "CRUNCHYROLL"
+                else -> intent.getStringExtra(FEED)
+            }
+            val downloader = Downloader(recyclerView, cardType!!)
             downloader.loadFeed(feedURL)
         }
     }
 
     companion object {
         private class Downloader(
-            private val recyclerView: RecyclerView
+            private val recyclerView: RecyclerView,
+            private val cardType: String
         ) {
-            private val TAG = "CrunchyrollFeedDownloader"
+            private val TAG = "FeedDownloader"
 
             suspend fun loadFeed(url: String) {
                 var entries: List<Entry>? = null
@@ -42,14 +51,14 @@ class CrunchyrollFeed : AppCompatActivity() {
                 withContext(Dispatchers.IO) {
                     try {
                         val rssFeed = URL(url)
-                        val parser = CrunchyrollParser()
+                        val parser = FeedParser()
                         entries = parser.parse(rssFeed.openStream())
                     } catch (e: Exception) {
                         // How to call toast from IO dispatcher ?
                         Log.e(TAG, "loadFeed error: ${e.message}")
                     }
                 }
-                val adapter = RecyclerAdapter(entries!!, "CRUNCHYROLL")
+                val adapter = RecyclerAdapter(entries!!, cardType)
                 recyclerView.adapter = adapter
                 // recyclerView.layoutManager = LinearLayoutManager(context)
             }

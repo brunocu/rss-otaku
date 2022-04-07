@@ -16,6 +16,12 @@ class MainActivity : AppCompatActivity() {
         val intent = when (view.id) {
             R.id.btn_crunchyroll -> Intent(this, CrunchySelectActivity::class.java)
             R.id.btn_waifu -> Intent(this, WaifuActivity::class.java)
+            R.id.btn_news -> Intent(this, FeedActivity::class.java).apply {
+                putExtra(FEED, "NEWS")
+            }
+            R.id.btn_manga -> Intent(this, FeedActivity::class.java).apply {
+                putExtra(FEED, "MANGA")
+            }
             else -> throw IllegalStateException("Invalid button")
         }
         startActivity(intent)

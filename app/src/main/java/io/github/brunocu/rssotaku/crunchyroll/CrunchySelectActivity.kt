@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import io.github.brunocu.rssotaku.FEED
+import io.github.brunocu.rssotaku.FeedActivity
 import io.github.brunocu.rssotaku.R
-
-const val CRUNCHYROLL_FEED = "io.github.brunocu.rssotaku.CRUNCHYROLL"
 
 class CrunchySelectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,11 +16,11 @@ class CrunchySelectActivity : AppCompatActivity() {
 
     fun openActivity(view: View) {
         val intent = when (view.id) {
-            R.id.btn_recent -> Intent(this, CrunchyrollFeed::class.java).apply {
-                putExtra(CRUNCHYROLL_FEED, "RECENT")
+            R.id.btn_recent -> Intent(this, FeedActivity::class.java).apply {
+                putExtra(FEED, "RECENT")
             }
-            R.id.btn_popular -> Intent(this, CrunchyrollFeed::class.java).apply {
-                putExtra(CRUNCHYROLL_FEED, "POPULAR")
+            R.id.btn_popular -> Intent(this, FeedActivity::class.java).apply {
+                putExtra(FEED, "POPULAR")
             }
             else -> throw IllegalStateException("Invalid button")
         }

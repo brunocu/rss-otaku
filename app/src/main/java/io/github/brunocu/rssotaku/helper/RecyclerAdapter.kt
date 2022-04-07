@@ -1,4 +1,4 @@
-package io.github.brunocu.rssotaku
+package io.github.brunocu.rssotaku.helper
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import io.github.brunocu.rssotaku.R
 
 data class Entry(
     val title: String?,
@@ -14,7 +15,7 @@ data class Entry(
     val link: String?
 )
 
-class RecyclerAdapter(private val feedEntries: List<Entry>, private val feedType: String) :
+class RecyclerAdapter(private val feedEntries: List<Entry>, private val cardType: String) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtTitle: TextView = view.findViewById(R.id.txtTitle)
@@ -34,11 +35,11 @@ class RecyclerAdapter(private val feedEntries: List<Entry>, private val feedType
         holder.txtTitle.text = currentEntry.title
         holder.txtPubDate.text = currentEntry.pubDate
         holder.txtDescription.text = currentEntry.description
-        holder.txtLink.text = "Watch now: " + currentEntry.link
+        holder.txtLink.text = "Link: " + currentEntry.link
 
-        when(feedType) {
+        when(cardType) {
             "CRUNCHYROLL" -> holder.txtTitle.setTextColor(Color.parseColor("#FFC196"))
-            "ANN" -> holder.txtTitle.setTextColor(Color.parseColor("#BBFF9D"))
+            "NEWS" -> holder.txtTitle.setTextColor(Color.parseColor("#CC98F0"))
             "MANGA" -> holder.txtTitle.setTextColor(Color.parseColor("#9DDBFF"))
             else -> IllegalStateException("Invalid feedType")
         }
