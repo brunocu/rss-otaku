@@ -1,5 +1,6 @@
 package io.github.brunocu.rssotaku
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,9 @@ class RecyclerAdapter(private val feedEntries: List<Entry>) :
         holder.txtPubDate.text = currentEntry.pubDate
         holder.txtDescription.text = currentEntry.description
         holder.txtLink.text = "Watch now: " + currentEntry.link
+
+
+        holder.txtTitle.setTextColor(Color.parseColor("#FFC196"))
     }
 
     override fun getItemCount() = feedEntries.size
